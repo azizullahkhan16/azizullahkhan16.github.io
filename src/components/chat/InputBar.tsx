@@ -46,7 +46,7 @@ export function InputBar({ onSubmit, isLoading }: InputBarProps) {
   const canSubmit = value.trim().length > 0 && !isLoading
 
   return (
-    <div className="px-4 pb-4 pt-2">
+    <div className="px-3 sm:px-4 pb-4 pt-2">
       <div
         className={cn(
           'relative flex items-end gap-2 rounded-2xl border bg-[var(--card)] p-3 transition-colors',
@@ -91,7 +91,7 @@ export function InputBar({ onSubmit, isLoading }: InputBarProps) {
         <kbd className="rounded border border-[var(--border)] px-1 py-0.5 text-xs font-mono">
           Shift + Enter
         </kbd>{' '}
-        for newline
+        for newline &middot; results may contain traces of ambition
       </p>
     </div>
   )

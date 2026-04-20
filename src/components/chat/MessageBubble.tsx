@@ -16,7 +16,7 @@ function UserBubble({ content }: { content: string }) {
     <div className="flex justify-end px-4 py-2">
       <div
         className={cn(
-          'max-w-[75%] rounded-2xl rounded-br-sm px-4 py-3',
+          'max-w-[88%] sm:max-w-[75%] rounded-2xl rounded-br-sm px-4 py-3',
           'bg-violet-600 text-white',
           'text-sm leading-relaxed'
         )}
@@ -46,7 +46,7 @@ function AssistantBubble({
     <div className="px-4 py-2">
       <div
         className={cn(
-          'max-w-[82%] rounded-2xl rounded-tl-sm px-4 py-3',
+          'w-full rounded-2xl rounded-tl-sm px-4 py-3',
           'bg-[var(--card)] border border-[var(--border)]',
           'text-sm'
         )}

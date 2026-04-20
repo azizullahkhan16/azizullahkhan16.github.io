@@ -9,6 +9,15 @@ export type Message = {
   content: string
 }
 
+export type ChatSession = {
+  id: string
+  title: string
+  messages: Message[]
+  createdAt: number
+  section?: string
+  pinned?: boolean
+}
+
 export function useChat() {
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)

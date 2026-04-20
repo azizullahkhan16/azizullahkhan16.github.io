@@ -12,24 +12,24 @@ import {
   ExternalLink,
   PanelLeftClose,
   PanelLeftOpen,
+  History,
+  X,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { Badge } from '@/components/ui/badge'
 import { Sheet, SheetContent } from '@/components/ui/sheet'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { sidebarLinks } from '@/data/sidebar-links'
 import { profile } from '@/data/profile'
 import { cn } from '@/lib/utils'
+import { RecentChats } from '@/components/layout/RecentChats'
+import type { ChatSession } from '@/hooks/useChat'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  User,
-  FlaskConical,
-  Briefcase,
-  Code2,
-  Mail,
+  User, FlaskConical, Briefcase, Code2, Mail,
 }
 
-// Deterministic color from name so it stays consistent across renders
 const AVATAR_COLORS = [
   '#7c3aed', '#2563eb', '#16a34a', '#d97706',
   '#db2777', '#0891b2', '#dc2626', '#9333ea', '#0d9488', '#c2410c',
@@ -41,27 +41,29 @@ function getAvatarColor(name: string): string {
   return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length]
 }
 
-const initials = profile.name
-  .split(' ')
-  .map((n: string) => n[0])
-  .join('')
-  .slice(0, 2)
-  .toUpperCase()
-
+const initials = profile.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()
 const avatarColor = getAvatarColor(profile.name)
 
 function InitialsAvatar() {
   return (
-    <div
-      className="h-9 w-9 rounded-full flex items-center justify-center font-bold text-white text-sm shrink-0"
-      style={{ backgroundColor: avatarColor }}
-    >
-      {initials}
-    </div>
+    <img
+      src={profile.avatarUrl}
+      alt={profile.name}
+      className="h-9 w-9 rounded-full object-cover shrink-0"
+      onError={e => {
+        const el = e.currentTarget
+        el.style.display = 'none'
+        const fallback = document.createElement('div')
+        fallback.className = 'h-9 w-9 rounded-full flex items-center justify-center font-bold text-white text-sm shrink-0'
+        fallback.style.backgroundColor = avatarColor
+        fallback.textContent = initials
+        el.parentNode?.insertBefore(fallback, el)
+      }}
+    />
   )
 }
 
-// ─── Expanded sidebar ─────────────────────────────────────────────────────────
+// ─── Expanded sidebar ──────────────────────────────────────────────────────────
 
 interface SidebarFullProps {
   onLinkClick: (prompt: string, label: string) => void
@@ -69,23 +71,33 @@ interface SidebarFullProps {
   onToggle?: () => void
   onClose?: () => void
   currentSection?: string
+  pinnedSessions: ChatSession[]
+  userSessions: ChatSession[]
+  activeSessionId: string | null
+  onSwitchSession: (id: string) => void
+  onDeleteSession: (id: string) => void
 }
 
-function SidebarFull({ onLinkClick, onReset, onToggle, onClose, currentSection }: SidebarFullProps) {
-  const handleLink = (prompt: string, label: string) => {
-    onLinkClick(prompt, label)
-    onClose?.()
-  }
-
-  const handleReset = () => {
-    onReset()
-    onClose?.()
-  }
+function SidebarFull({ onLinkClick, onReset, onToggle, onClose, currentSection: _currentSection, pinnedSessions, userSessions, activeSessionId, onSwitchSession, onDeleteSession }: SidebarFullProps) {
+  const handleLink = (prompt: string, label: string) => { onLinkClick(prompt, label); onClose?.() }
+  const handleReset = () => { onReset(); onClose?.() }
 
   return (
     <div className="flex h-full flex-col">
       {/* Top: collapse toggle + wordmark */}
       <div className="px-3 py-3 flex items-center gap-2">
+        {onToggle && (
+          <button
+            onClick={onToggle}
+            className={cn(
+              'h-8 w-8 flex items-center justify-center rounded-lg shrink-0',
+              'text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400 transition-colors'
+            )}
+            aria-label="Collapse sidebar"
+          >
+            <PanelLeftClose className="h-5 w-5" />
+          </button>
+        )}
         <span
           className="flex-1 text-base font-bold truncate font-heading"
           style={{
@@ -96,37 +108,20 @@ function SidebarFull({ onLinkClick, onReset, onToggle, onClose, currentSection }
         >
           {profile.name}
         </span>
-        {onToggle && (
-          <button
-            onClick={onToggle}
-            className={cn(
-              'h-8 w-8 flex items-center justify-center rounded-lg shrink-0',
-              'text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400',
-              'transition-colors'
-            )}
-            aria-label="Collapse sidebar"
-          >
-            <PanelLeftClose className="h-5 w-5" />
-          </button>
-        )}
       </div>
 
       {/* New Chat */}
       <div className="px-3">
-        <Button
-          variant="outline"
-          className="w-full justify-start gap-2 text-sm"
-          onClick={handleReset}
-        >
+        <Button variant="outline" className="w-full justify-start gap-2 text-sm" onClick={handleReset}>
           <PenSquare className="h-4 w-4 shrink-0" />
           New Chat
         </Button>
       </div>
 
-      <Separator className="my-3" />
+      <Separator className="my-3 shrink-0" />
 
-      {/* Navigation links */}
-      <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
+      {/* Explore — fixed */}
+      <div className="px-3 space-y-1 shrink-0">
         <p className="px-2 mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">
           Explore
         </p>
@@ -147,9 +142,25 @@ function SidebarFull({ onLinkClick, onReset, onToggle, onClose, currentSection }
             </button>
           )
         })}
-      </nav>
+      </div>
 
-      <Separator className="my-3" />
+      <Separator className="my-3 shrink-0" />
+
+      {/* Recent — scrollable between the two separators */}
+      <div className="flex-1 px-3 min-h-0 overflow-hidden">
+        <RecentChats
+          pinnedSessions={pinnedSessions}
+          userSessions={userSessions}
+          activeId={activeSessionId}
+          onSwitch={onSwitchSession}
+          onDelete={onDeleteSession}
+          onClose={onClose}
+        />
+      </div>
+
+      <Separator className="my-3 shrink-0" />
+
+
 
       {/* Social links */}
       <div className="px-3 space-y-1">
@@ -157,34 +168,24 @@ function SidebarFull({ onLinkClick, onReset, onToggle, onClose, currentSection }
           Links
         </p>
         {profile.links.github && (
-          <a
-            href={profile.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--card)] transition-colors"
-          >
+          <a href={profile.links.github} target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--card)] transition-colors">
             <Github className="h-4 w-4 shrink-0" />
             GitHub
             <ExternalLink className="h-3 w-3 ml-auto opacity-50" />
           </a>
         )}
         {profile.links.linkedin && (
-          <a
-            href={profile.links.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--card)] transition-colors"
-          >
+          <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--card)] transition-colors">
             <Linkedin className="h-4 w-4 shrink-0" />
             LinkedIn
             <ExternalLink className="h-3 w-3 ml-auto opacity-50" />
           </a>
         )}
         {profile.links.email && (
-          <a
-            href={`mailto:${profile.links.email}`}
-            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--card)] transition-colors"
-          >
+          <a href={`mailto:${profile.links.email}`}
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--card)] transition-colors">
             <Mail className="h-4 w-4 shrink-0" />
             Email
           </a>
@@ -195,7 +196,7 @@ function SidebarFull({ onLinkClick, onReset, onToggle, onClose, currentSection }
       <div className="px-2 py-2 border-t border-[var(--border)]">
         <div className={cn(
           'flex items-center gap-3 px-2 py-2 rounded-xl',
-          'hover:bg-violet-500/8 transition-colors cursor-default'
+          'hover:bg-violet-500/10 transition-colors cursor-default'
         )}>
           <InitialsAvatar />
           <div className="flex-1 min-w-0">
@@ -215,20 +216,20 @@ function SidebarFull({ onLinkClick, onReset, onToggle, onClose, currentSection }
   )
 }
 
-// ─── Collapsed icon-only sidebar ──────────────────────────────────────────────
+// ─── Collapsed icon-only sidebar ───────────────────────────────────────────────
 
 interface SidebarCollapsedProps {
   onLinkClick: (prompt: string, label: string) => void
   onReset: () => void
   onToggle: () => void
+  onOpenRecent: () => void
 }
 
-function SidebarCollapsed({ onLinkClick, onReset, onToggle }: SidebarCollapsedProps) {
+function SidebarCollapsed({ onLinkClick, onReset, onToggle, onOpenRecent }: SidebarCollapsedProps) {
   return (
     <TooltipProvider delayDuration={200}>
       <div className="flex h-full flex-col items-center py-3 gap-1">
 
-        {/* Expand toggle at top */}
         <Tooltip>
           <TooltipTrigger asChild>
             <button
@@ -242,7 +243,6 @@ function SidebarCollapsed({ onLinkClick, onReset, onToggle }: SidebarCollapsedPr
           <TooltipContent side="right">Expand sidebar</TooltipContent>
         </Tooltip>
 
-        {/* New Chat */}
         <Tooltip>
           <TooltipTrigger asChild>
             <button
@@ -257,7 +257,6 @@ function SidebarCollapsed({ onLinkClick, onReset, onToggle }: SidebarCollapsedPr
 
         <Separator className="my-1 w-6" />
 
-        {/* Nav links */}
         {sidebarLinks.map((link) => {
           const Icon = iconMap[link.icon] ?? User
           return (
@@ -275,9 +274,22 @@ function SidebarCollapsed({ onLinkClick, onReset, onToggle }: SidebarCollapsedPr
           )
         })}
 
+        <Separator className="my-1 w-6" />
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button
+              onClick={onOpenRecent}
+              className="h-9 w-9 flex items-center justify-center rounded-lg text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400 transition-colors"
+              aria-label="Recent chats"
+            >
+              <History className="h-4 w-4" />
+            </button>
+          </TooltipTrigger>
+          <TooltipContent side="right">Recent chats</TooltipContent>
+        </Tooltip>
+
         <div className="flex-1" />
 
-        {/* Initials avatar */}
         <Tooltip>
           <TooltipTrigger asChild>
             <div className="cursor-default">
@@ -292,16 +304,22 @@ function SidebarCollapsed({ onLinkClick, onReset, onToggle }: SidebarCollapsedPr
   )
 }
 
-// ─── Main export ──────────────────────────────────────────────────────────────
+// ─── Main export ───────────────────────────────────────────────────────────────
 
 interface SidebarProps {
   onSubmit: (text: string, section?: string) => void
   onReset: () => void
   mobileOpen: boolean
   onMobileClose: () => void
-  collapsed: boolean
-  onToggleCollapse: () => void
+  collapsed?: boolean
+  onToggleCollapse?: () => void
   currentSection?: string
+  noAside?: boolean
+  pinnedSessions: ChatSession[]
+  userSessions: ChatSession[]
+  activeSessionId: string | null
+  onSwitchSession: (id: string) => void
+  onDeleteSession: (id: string) => void
 }
 
 export function Sidebar({
@@ -309,39 +327,64 @@ export function Sidebar({
   onReset,
   mobileOpen,
   onMobileClose,
-  collapsed,
+  collapsed = false,
   onToggleCollapse,
   currentSection,
+  noAside = false,
+  pinnedSessions,
+  userSessions,
+  activeSessionId,
+  onSwitchSession,
+  onDeleteSession,
 }: SidebarProps) {
   const handleLink = (prompt: string, label: string) => onSubmit(prompt, label)
 
+  // Delay switching layout so width transition finishes before content swaps
+  const [displayCollapsed, setDisplayCollapsed] = React.useState(collapsed)
+  React.useEffect(() => {
+    if (collapsed) {
+      // Collapsing: swap to icon-only immediately (text is clipped by shrinking width)
+      setDisplayCollapsed(true)
+    } else {
+      // Expanding: wait for width to open up before showing full content
+      const t = setTimeout(() => setDisplayCollapsed(false), 200)
+      return () => clearTimeout(t)
+    }
+  }, [collapsed])
+
   return (
     <>
-      {/* Desktop sidebar — overflow-hidden is safe; Radix tooltips use portals */}
-      <aside
-        className={cn(
-          'flex flex-col border-r border-[var(--border)] bg-[var(--card)] h-screen sticky top-0',
-          'transition-[width] duration-300 overflow-hidden',
-          collapsed ? 'w-[60px]' : 'w-[260px]'
-        )}
-      >
-        {collapsed ? (
-          <SidebarCollapsed
-            onLinkClick={handleLink}
-            onReset={onReset}
-            onToggle={onToggleCollapse}
-          />
-        ) : (
-          <SidebarFull
-            onLinkClick={handleLink}
-            onReset={onReset}
-            onToggle={onToggleCollapse}
-            currentSection={currentSection}
-          />
-        )}
-      </aside>
+      {!noAside && (
+        <aside
+          className={cn(
+            'flex flex-col border-r border-[var(--border)] bg-[var(--card)] h-screen sticky top-0',
+            'transition-[width] duration-300 ease-in-out overflow-hidden',
+            collapsed ? 'w-[60px]' : 'w-[260px]'
+          )}
+        >
+          {displayCollapsed ? (
+            <SidebarCollapsed
+              onLinkClick={handleLink}
+              onReset={onReset}
+              onToggle={onToggleCollapse!}
+              onOpenRecent={onToggleCollapse!}
+            />
+          ) : (
+            <SidebarFull
+              onLinkClick={handleLink}
+              onReset={onReset}
+              onToggle={onToggleCollapse}
+              currentSection={currentSection}
+              pinnedSessions={pinnedSessions}
+              userSessions={userSessions}
+              activeSessionId={activeSessionId}
+              onSwitchSession={onSwitchSession}
+              onDeleteSession={onDeleteSession}
+            />
+          )}
+        </aside>
+      )}
 
-      {/* Mobile sidebar — Sheet is portalled, unaffected by desktop wrapper */}
       <Sheet open={mobileOpen} onOpenChange={(open) => !open && onMobileClose()}>
         <SheetContent side="left" className="w-[280px] p-0 bg-[var(--card)]">
           <SidebarFull
@@ -349,6 +392,11 @@ export function Sidebar({
             onReset={onReset}
             onClose={onMobileClose}
             currentSection={currentSection}
+            pinnedSessions={pinnedSessions}
+            userSessions={userSessions}
+            activeSessionId={activeSessionId}
+            onSwitchSession={onSwitchSession}
+            onDeleteSession={onDeleteSession}
           />
         </SheetContent>
       </Sheet>

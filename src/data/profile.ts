@@ -2,7 +2,7 @@ export const profile = {
   name: 'Azizullah Khan',
   modelLabel: 'researcher-v1.0',
   tagline: 'ML Systems · LLM Infrastructure',
-  avatarUrl: '/avatar.png',
+  avatarUrl: '/avatar.jpg',
   links: {
     github: 'https://github.com/yourusername',
     linkedin: 'https://linkedin.com/in/yourusername',
