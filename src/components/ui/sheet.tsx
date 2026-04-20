@@ -67,6 +67,15 @@ const SheetContent = React.forwardRef<HTMLDivElement, SheetContentOwnProps>(
   ({ side = 'left', className, children, onClose }, ref) => {
     const { open, onOpenChange } = React.useContext(SheetContext)
 
+    React.useEffect(() => {
+      if (open) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = ''
+      }
+      return () => { document.body.style.overflow = '' }
+    }, [open])
+
     const handleClose = () => {
       onOpenChange(false)
       onClose?.()

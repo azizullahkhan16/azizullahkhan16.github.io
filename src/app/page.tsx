@@ -112,6 +112,7 @@ export default function Home() {
         onRename={isPinnedActive ? undefined : handleRename}
         onDelete={isPinnedActive ? undefined : handleDeleteActive}
       />
+
     </div>
   )
 }

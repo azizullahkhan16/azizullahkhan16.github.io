@@ -37,9 +37,9 @@ function SharePopup({ url, onClose }: { url: string; onClose: () => void }) {
       <div
         ref={ref}
         className={cn(
-          'w-[360px] rounded-2xl border border-white/10',
+          'w-[calc(100vw-2rem)] sm:w-[360px] rounded-2xl border border-white/10',
           'bg-[var(--card)] shadow-2xl',
-          'p-5'
+          'p-4 sm:p-5'
         )}
       >
         {/* Header */}

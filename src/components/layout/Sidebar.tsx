@@ -137,7 +137,7 @@ function SidebarFull({ onLinkClick, onReset, onToggle, onClose, currentSection: 
                 'transition-colors text-left group'
               )}
             >
-              <Icon className="h-4 w-4 shrink-0 text-[var(--muted-foreground)] group-hover:text-violet-400 transition-colors" />
+              <Icon className="h-5 w-5 shrink-0 text-[var(--muted-foreground)] group-hover:text-violet-400 transition-colors" />
               {link.label}
             </button>
           )
@@ -249,7 +249,7 @@ function SidebarCollapsed({ onLinkClick, onReset, onToggle, onOpenRecent }: Side
               onClick={onReset}
               className="h-9 w-9 flex items-center justify-center rounded-lg text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400 transition-colors"
             >
-              <PenSquare className="h-4 w-4" />
+              <PenSquare className="h-5 w-5" />
             </button>
           </TooltipTrigger>
           <TooltipContent side="right">New Chat</TooltipContent>
@@ -264,9 +264,9 @@ function SidebarCollapsed({ onLinkClick, onReset, onToggle, onOpenRecent }: Side
               <TooltipTrigger asChild>
                 <button
                   onClick={() => onLinkClick(link.prompt, link.label)}
-                  className="h-9 w-9 flex items-center justify-center rounded-lg text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400 transition-colors"
+                  className="h-10 w-10 flex items-center justify-center rounded-lg text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400 transition-colors"
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-5 w-5" />
                 </button>
               </TooltipTrigger>
               <TooltipContent side="right">{link.label}</TooltipContent>
@@ -279,10 +279,10 @@ function SidebarCollapsed({ onLinkClick, onReset, onToggle, onOpenRecent }: Side
           <TooltipTrigger asChild>
             <button
               onClick={onOpenRecent}
-              className="h-9 w-9 flex items-center justify-center rounded-lg text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400 transition-colors"
+              className="h-10 w-10 flex items-center justify-center rounded-lg text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400 transition-colors"
               aria-label="Recent chats"
             >
-              <History className="h-4 w-4" />
+              <History className="h-5 w-5" />
             </button>
           </TooltipTrigger>
           <TooltipContent side="right">Recent chats</TooltipContent>
