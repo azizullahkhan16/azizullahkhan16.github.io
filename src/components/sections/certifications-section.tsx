@@ -1,40 +1,44 @@
+import Image from 'next/image'
 import { Section } from '@/components/section'
 import { certifications } from '@/data/certifications'
 
 export function CertificationsSection() {
   if (certifications.length === 0) return null
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
   return (
-    <Section id="certifications" title="Certifications">
-      <div className="space-y-0 divide-y divide-border">
-        {certifications.map((cert) => (
-          <div key={cert.title} className="py-4 first:pt-0 flex flex-col md:flex-row md:justify-between md:items-start gap-1">
-            <div>
-              <div className="text-[15px] font-semibold">
-                {cert.credentialUrl ? (
-                  <a
-                    href={cert.credentialUrl}
-                    className="text-accent hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {cert.title}
-                  </a>
-                ) : (
-                  cert.title
-                )}
+    <Section id="signals" index="06" title="signals">
+      <h2 className="eyebrow">Verified along the way.</h2>
+      <p className="lede">
+        External signals from Microsoft and NVIDIA. Each links to a live credential.
+      </p>
+      <div className="certs-grid">
+        {certifications.map((cert) => {
+          const Wrapper = cert.credentialUrl ? 'a' : 'div'
+          const wrapperProps = cert.credentialUrl
+            ? { href: cert.credentialUrl, target: '_blank', rel: 'noopener noreferrer' }
+            : {}
+          return (
+            <Wrapper key={cert.code} className="cert" {...wrapperProps}>
+              <div className="cert-badge">
+                <Image
+                  src={`${basePath}${cert.badgeImage}`}
+                  alt={`${cert.title} badge`}
+                  width={68}
+                  height={68}
+                />
               </div>
-              <div className="text-[13px] text-muted-foreground mt-0.5">
-                {cert.issuer}
+              <h3 className="cert-title">{cert.title}</h3>
+              <div className="cert-meta">
+                <span>
+                  {cert.issuer}
+                  {cert.issuer === 'Microsoft' && ` · ${cert.code}`}
+                </span>
+                {cert.credentialUrl && <span className="verify">verify ↗</span>}
               </div>
-            </div>
-            {cert.date && (
-              <div className="text-[13px] text-muted-foreground whitespace-nowrap">
-                {cert.date}
-              </div>
-            )}
-          </div>
-        ))}
+            </Wrapper>
+          )
+        })}
       </div>
     </Section>
   )

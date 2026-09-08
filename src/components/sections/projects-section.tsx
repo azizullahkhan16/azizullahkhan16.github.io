@@ -3,67 +3,44 @@ import { projects } from '@/data/projects'
 
 export function ProjectsSection() {
   return (
-    <Section id="projects" title="Projects" alt>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {projects.map((project) => (
-          <div
-            key={project.title}
-            className="bg-card border border-border rounded-lg p-5 hover:shadow-md transition-shadow"
-          >
-            <h3 className="text-base font-semibold mb-1">{project.title}</h3>
-            {project.outcome && (
-              <div className="text-[13px] font-medium text-accent mb-2">
-                {project.outcome}
-              </div>
-            )}
-            <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-              {project.summary}
-            </p>
-            <div className="flex flex-wrap gap-1.5">
+    <Section id="builds" index="03" title="builds">
+      <h2 className="eyebrow">Things I&apos;ve shipped.</h2>
+      <p className="lede">
+        Personal and university projects where I owned the whole system — from network topology
+        to database schema.
+      </p>
+      <div className="projects-grid">
+        {projects.map((project, i) => (
+          <article key={project.title} className="project">
+            <div className="idx">P.{String(i + 1).padStart(2, '0')}</div>
+            <h3>{project.title}</h3>
+            {project.outcome && <div className="outcome">{project.outcome}</div>}
+            <p className="summary">{project.summary}</p>
+            <div className="stack">
               {project.stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="text-[11px] px-2 py-0.5 bg-section-bg border border-border rounded text-muted-foreground"
-                >
-                  {tech}
-                </span>
+                <span key={tech}>{tech}</span>
               ))}
             </div>
             {(project.links.github || project.links.demo || project.links.writeup) && (
-              <div className="flex gap-3 mt-3">
+              <div className="links">
                 {project.links.github && (
-                  <a
-                    href={project.links.github}
-                    className="text-[12px] font-medium text-accent hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub →
+                  <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                    github <span className="arrow">↗</span>
                   </a>
                 )}
                 {project.links.demo && (
-                  <a
-                    href={project.links.demo}
-                    className="text-[12px] font-medium text-accent hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Demo →
+                  <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
+                    demo <span className="arrow">↗</span>
                   </a>
                 )}
                 {project.links.writeup && (
-                  <a
-                    href={project.links.writeup}
-                    className="text-[12px] font-medium text-accent hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Write-up →
+                  <a href={project.links.writeup} target="_blank" rel="noopener noreferrer">
+                    write-up <span className="arrow">↗</span>
                   </a>
                 )}
               </div>
             )}
-          </div>
+          </article>
         ))}
       </div>
     </Section>

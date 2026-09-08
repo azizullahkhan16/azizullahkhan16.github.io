@@ -1,24 +1,36 @@
+import { Fragment } from 'react'
 import { Section } from '@/components/section'
-import { skills } from '@/data/skills'
+import { stack } from '@/data/skills'
 
 export function SkillsSection() {
   return (
-    <Section id="skills" title="Skills">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {skills.map((group) => (
-          <div key={group.group}>
-            <h3 className="text-sm font-semibold mb-3">{group.group}</h3>
-            <div className="flex flex-wrap gap-1.5">
-              {group.items.map((item) => (
-                <span
-                  key={item}
-                  className="text-[13px] px-3 py-1 bg-card border border-border rounded text-foreground"
-                >
-                  {item}
+    <Section id="stack" index="05" title="stack">
+      <h2 className="eyebrow">The stack, layer by layer.</h2>
+      <p className="lede">
+        Shown as I actually reach for it — from the cloud fabric at the bottom to the
+        observability that watches it from above.
+      </p>
+      <div className="stack-diagram">
+        {stack.map((layer, i) => (
+          <Fragment key={layer.layerNumber}>
+            <div className="layer">
+              <div className="layer-label">
+                <span className="n">
+                  {layer.layerNumber} · {layer.category}
                 </span>
-              ))}
+                <span className="name">{layer.layerName}</span>
+              </div>
+              <div className="items">
+                {layer.items.map((item) => (
+                  <span key={item}>
+                    {item}
+                    {layer.primaryItem === item && <em> primary</em>}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+            {i < stack.length - 1 && <div className="arrow-down" />}
+          </Fragment>
         ))}
       </div>
     </Section>

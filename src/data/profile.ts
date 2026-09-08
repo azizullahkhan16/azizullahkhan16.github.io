@@ -2,7 +2,7 @@ export const profile = {
   name: 'Azizullah Khan',
   positioning: 'Software Engineer — Infrastructure & Cloud Systems',
   affiliation: 'Data Science Dojo',
-  bio: 'Software Engineer building secure, scalable cloud infrastructure at Data Science Dojo. BS Computer Science from IBA Karachi. Focused on zero-trust networking, Kubernetes orchestration, LLM observability, and infrastructure automation on Azure. Seeking to pursue graduate studies in ML Systems and LLM Infrastructure.',
+  bio: 'Software engineer on the infrastructure team at Data Science Dojo, designing the network, observability, and multi-tenant billing layers of our LLM platform across eight production environments. Working on the systems questions ML infrastructure keeps surfacing — inference scheduling, alertable LLM observability, and zero-trust for multi-tenant serving.',
   avatarUrl: '/avatar.png',
   cvPath: '/Azizullah_resume_v3.pdf',
   email: 'aziz.bin.aman16@gmail.com',
