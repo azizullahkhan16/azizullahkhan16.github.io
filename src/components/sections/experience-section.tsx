@@ -3,35 +3,43 @@ import { experience } from '@/data/experience'
 
 export function ExperienceSection() {
   if (experience.length === 0) return null
-
   return (
-    <Section id="experience" title="Experience" alt>
-      <div className="space-y-0 divide-y divide-border">
-        {experience.map((exp) => (
-          <div
-            key={`${exp.role}-${exp.org}`}
-            className="flex flex-col md:flex-row md:justify-between md:items-start py-5 first:pt-0 gap-1"
-          >
+    <Section id="work" index="04" title="work">
+      <h2 className="eyebrow">Where I&apos;ve built things.</h2>
+      <p className="lede">
+        Two engineering roles across ~2.5 years. Both hands-on backend and infra. Numbers below
+        are the ones I actually moved.
+      </p>
+      {experience.map((exp) => {
+        const [start, end] = exp.dates.split(' — ')
+        return (
+          <div key={`${exp.role}-${exp.org}`} className="exp-item">
+            <div className="exp-when">
+              {start}
+              <br />—<br />
+              {end}
+              {exp.current && <div className="now">now</div>}
+            </div>
             <div>
-              <div className="text-[15px] font-semibold">{exp.role}</div>
-              <div className="text-sm text-muted-foreground mt-0.5">
+              <h3 className="exp-role">{exp.role}</h3>
+              <div className="exp-org">
                 {exp.org}
-                {exp.location && ` · ${exp.location}`}
+                {exp.location && (
+                  <>
+                    <span className="dot">/</span>
+                    {exp.location}
+                  </>
+                )}
               </div>
-              <ul className="mt-2 space-y-1">
+              <ul className="exp-bullets">
                 {exp.bullets.map((bullet, i) => (
-                  <li key={i} className="text-sm text-muted-foreground leading-relaxed">
-                    • {bullet}
-                  </li>
+                  <li key={i} dangerouslySetInnerHTML={{ __html: bullet }} />
                 ))}
               </ul>
             </div>
-            <div className="text-[13px] text-muted-foreground md:text-right whitespace-nowrap">
-              {exp.dates}
-            </div>
           </div>
-        ))}
-      </div>
+        )
+      })}
     </Section>
   )
 }
