@@ -26,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Azizullah Khan — Software Engineer, ML Systems',
+  title: 'Azizullah Khan — Software Engineer',
   description:
     'Software engineer building the network, observability, and multi-tenant billing layers of an LLM platform at Data Science Dojo.',
   keywords: ['ML Systems', 'LLM Infrastructure', 'Cloud Infrastructure', 'Azure'],
