@@ -7,9 +7,8 @@ import { ThemeToggle } from './theme-toggle'
 const sections = [
   { id: 'hero', label: 'intro' },
   { id: 'thinking', label: 'thinking' },
-  { id: 'pubs', label: 'pubs' },
-  { id: 'builds', label: 'builds' },
   { id: 'work', label: 'work' },
+  { id: 'builds', label: 'builds' },
   { id: 'stack', label: 'stack' },
   { id: 'signals', label: 'signals' },
   { id: 'recent', label: 'recent' },

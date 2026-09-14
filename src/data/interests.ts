@@ -1,7 +1,7 @@
 export const interests: string[] = [
-  'ML Systems & LLM Infrastructure',
+  'ML Systems & AI Workload Infrastructure',
   'Cloud-Native Architecture',
   'Infrastructure Automation & IaC',
-  'LLM Observability & Monitoring',
+  'LLM Observability & Evaluation',
   'Zero-Trust Networking',
 ]

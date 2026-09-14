@@ -11,13 +11,22 @@ export const stack: StackLayer[] = [
     layerNumber: 'L.05',
     category: 'watch',
     layerName: 'Observability',
-    items: ['Prometheus', 'Grafana', 'Azure Monitor', 'PagerDuty', 'Langfuse'],
+    items: ['Prometheus', 'Grafana', 'Datadog', 'PagerDuty', 'Langfuse'],
   },
   {
     layerNumber: 'L.04',
     category: 'serve',
     layerName: 'Application',
-    items: ['FastAPI', 'Spring Boot', 'Node.js', 'React', 'Python', 'Java', 'TypeScript'],
+    items: [
+      'FastAPI',
+      'Spring Boot',
+      'Node.js',
+      'React',
+      'Python',
+      'Java',
+      'TypeScript',
+      'Go',
+    ],
   },
   {
     layerNumber: 'L.03',
@@ -29,7 +38,7 @@ export const stack: StackLayer[] = [
     layerNumber: 'L.02',
     category: 'orchestrate',
     layerName: 'Platform',
-    items: ['Kubernetes', 'Docker', 'Terraform', 'CI/CD Pipelines', 'Linux'],
+    items: ['Kubernetes', 'Docker', 'Terraform', 'Slurm', 'Linux'],
   },
   {
     layerNumber: 'L.01',

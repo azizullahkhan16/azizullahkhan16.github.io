@@ -17,18 +17,19 @@ export function Hero() {
           <div className="hero-inner">
             <div>
               <h1>
-                Building the <em>plumbing</em>
+                Building the <em>plumbing</em>&nbsp;for
                 <br />
-                for language&nbsp;models.
+                language&nbsp;models.
               </h1>
 
               <p className="pitch">
-                <strong>Software engineer</strong> on the infrastructure team at{' '}
-                {profile.affiliation}, designing the network, observability, and multi-tenant
-                billing layers of our LLM platform across eight production environments.
-                Working on the systems questions ML infrastructure keeps surfacing —
-                inference scheduling, alertable LLM observability, and zero-trust for
-                multi-tenant serving.
+                <strong>Software Engineer, Infrastructure</strong> at {profile.affiliation}. I
+                build and run the platform our AI applications sit on. That layer decides how
+                deployable, scalable, and reliable production serving actually is. Moving deeper
+                into the infrastructure of{' '}
+                <strong>training and inference at scale</strong>: fault-tolerant training
+                clusters, autoscaling GPU pools under agentic and long-context load, and
+                observability that catches non-deterministic failures before users do.
               </p>
 
               <div className="socials">
@@ -81,13 +82,13 @@ export function Hero() {
             <div className="cell">
               <div className="k">Focus</div>
               <div className="v">
-                ML Systems &amp; LLM
+                AI Infrastructure
                 <br />
-                <small>infrastructure, observability</small>
+                <small>training + inference at scale</small>
               </div>
             </div>
             <div className="cell">
-              <div className="k">Trained at</div>
+              <div className="k">Studied at</div>
               <div className="v">
                 {primaryEdu?.monogram ?? 'IBA Karachi'} · CS
                 <br />
@@ -101,7 +102,7 @@ export function Hero() {
               <div className="v">
                 Full-time roles
                 <br />
-                <small>Research collabs · MS programs</small>
+                <small>Research&nbsp;collabs</small>
               </div>
             </div>
           </div>

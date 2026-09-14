@@ -4,9 +4,9 @@ import { news } from '@/data/news'
 export function RecentSection() {
   if (news.length === 0) return null
   return (
-    <Section id="recent" index="07" title="recent">
-      <h2 className="eyebrow">Recent, dated.</h2>
-      <p className="lede">Small updates so the site doesn&apos;t look abandoned. Most recent first.</p>
+    <Section id="recent" index="06" title="recent">
+      <h2 className="eyebrow">How I got here.</h2>
+      <p className="lede">The dated trail — most recent first.</p>
       {news.map((item, i) => (
         <div key={`${item.date}-${i}`} className="news-item">
           <div className="news-date">{item.date}</div>

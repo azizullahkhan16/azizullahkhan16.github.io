@@ -1,8 +1,8 @@
 export const profile = {
   name: 'Azizullah Khan',
-  positioning: 'Software Engineer — Infrastructure & Cloud Systems',
+  positioning: 'Software Engineer - Infrastructure & Cloud Systems',
   affiliation: 'Data Science Dojo',
-  bio: 'Software engineer on the infrastructure team at Data Science Dojo, designing the network, observability, and multi-tenant billing layers of our LLM platform across eight production environments. Working on the systems questions ML infrastructure keeps surfacing — inference scheduling, alertable LLM observability, and zero-trust for multi-tenant serving.',
+  bio: 'Software Engineer, Infrastructure at Data Science Dojo. I build and run the platform our LLM applications sit on. That layer decides how deployable, scalable, and reliable production serving actually is. Moving deeper into the infrastructure of training and inference at scale: fault-tolerant training clusters, autoscaling GPU pools under agentic and long-context load, and observability that catches non-deterministic failures before users do.',
   avatarUrl: '/avatar.png',
   cvPath: '/Azizullah_resume_v3.pdf',
   email: 'aziz.bin.aman16@gmail.com',

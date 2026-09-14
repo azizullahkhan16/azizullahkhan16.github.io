@@ -5,22 +5,22 @@ export interface Question {
 }
 
 export const thinkingLede =
-  "The three systems questions I keep running into at work — the ones I want to <em>spend more time on</em>."
+  "The three ML infrastructure problems I’m studying now — and <em>actively seeking research collaborations</em> to go deeper on."
 
 export const questions: Question[] = [
   {
     label: 'Q.01',
-    body: 'How should LLM inference infrastructure adapt as <em>prompts increasingly control compute-time</em> — long-context, tool loops, and agentic chains — rather than emitting a single bounded generation?',
-    tag: '→ inference scheduling · batching · KV-cache reuse',
+    body: 'How do we <em>serve AI workloads efficiently</em> when a single request can be milliseconds or minutes, tokens or tool graphs, and the same GPU has to hold prompts, prefix caches, and KV state for tenants that don’t trust each other?',
+    tag: '→ continuous batching · KV-cache management · prefill/decode disaggregation · multi-tenant scheduling',
   },
   {
     label: 'Q.02',
-    body: 'What does <em>observability</em> mean when the system under test is a language model? P95 latency is only half the story once outputs are non-deterministic and quality is the SLO.',
-    tag: '→ eval-in-the-loop · trace semantics · alertable quality metrics',
+    body: 'What does <em>monitoring</em> mean for a system whose failures aren’t crashes but drift — where P95 latency is only half the story, and the SLO is a quality signal that has to be computed from traces, evals, and user feedback rather than measured off a socket?',
+    tag: '→ trace-based evaluation · LLM-as-judge · online quality metrics · alertable regressions',
   },
   {
     label: 'Q.03',
-    body: 'How do <em>zero-trust patterns survive multi-tenancy</em> when prompt inputs, retrieval indices, and serving weights all cross the same tenant boundary in a single request?',
-    tag: '→ isolation · private endpoints · privacy in shared serving',
+    body: 'How do training and inference clusters <em>stay reliable at scale</em> when jobs run for weeks, hardware fails silently, and a single straggling GPU can stall a global optimizer or a global queue?',
+    tag: '→ fault-tolerant training · elastic scheduling · silent-data-corruption detection · checkpoint/restore at scale',
   },
 ]
