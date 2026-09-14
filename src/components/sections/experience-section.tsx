@@ -4,11 +4,11 @@ import { experience } from '@/data/experience'
 export function ExperienceSection() {
   if (experience.length === 0) return null
   return (
-    <Section id="work" index="04" title="work">
+    <Section id="work" index="02" title="work">
       <h2 className="eyebrow">Where I&apos;ve built things.</h2>
       <p className="lede">
-        Two engineering roles across ~2.5 years. Both hands-on backend and infra. Numbers below
-        are the ones I actually moved.
+        Two engineering roles across ~2.5 years — from shipping backends to owning the platform.
+        Every metric below is one I moved.
       </p>
       {experience.map((exp) => {
         const [start, end] = exp.dates.split(' — ')

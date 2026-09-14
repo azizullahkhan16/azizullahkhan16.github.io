@@ -55,20 +55,21 @@ export function ContactSection() {
   })
 
   return (
-    <Section id="ping" index="08" title="ping" noBorder>
+    <Section id="ping" index="07" title="ping" noBorder>
       <div className="contact-wrap">
         <div className="kicker">
           <span className="dot" />
           Reachable · usually within a day
         </div>
         <h2>
-          Talking to labs and&nbsp;engineers
+          Open to labs, teams, and&nbsp;the
           <br />
-          about <em>ML systems</em>.
+          <em>questions</em> above.
         </h2>
         <p className="sub">
-          Reach out if you&apos;re building LLM infrastructure, hiring for ML systems work, or
-          thinking about the same research questions. Email works best.
+          Especially if you&apos;re building LLM or AI workload infra, hiring for platform
+          engineering, or working on any of the three questions I keep coming back to. Email
+          lands first.
         </p>
         {rows.map((row) => (
           <a

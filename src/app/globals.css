@@ -309,14 +309,16 @@ section.hero {
 .hero .meta-strip .cell:last-child { border-right: none; }
 .hero .meta-strip .k {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--meta);
-  margin-bottom: 6px;
+  color: var(--text);
+  opacity: 0.65;
+  margin-bottom: 8px;
 }
-.hero .meta-strip .v { font-size: 14px; color: var(--text); }
-.hero .meta-strip .v small { color: var(--muted); font-size: 12px; }
+.hero .meta-strip .v { font-size: 14.5px; color: var(--text); font-weight: 400; }
+.hero .meta-strip .v small { color: var(--text); opacity: 0.8; font-size: 13px; font-weight: 400; }
 
 .socials { display: flex; gap: 10px; margin-top: 28px; }
 .socials a {
@@ -507,6 +509,66 @@ section.hero {
 .project .links a .arrow { transition: transform 0.15s ease; display: inline-block; }
 .project .links a:hover .arrow { transform: translate(2px, -2px); }
 
+/* Collapsible grid wrapper (shared by builds + signals) */
+.grid-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.grid-collapse.open { grid-template-rows: 1fr; }
+.grid-collapse-inner { overflow: hidden; min-height: 0; }
+.grid-collapse .grid-collapse-grid { padding-top: 20px; }
+
+.grid-collapse .project,
+.grid-collapse .cert {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 380ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.grid-collapse.open .project,
+.grid-collapse.open .cert {
+  opacity: 1;
+  transform: translateY(0);
+}
+.grid-collapse.open .project:nth-child(1),
+.grid-collapse.open .cert:nth-child(1) { transition-delay: 120ms; }
+.grid-collapse.open .project:nth-child(2),
+.grid-collapse.open .cert:nth-child(2) { transition-delay: 170ms; }
+.grid-collapse.open .project:nth-child(3),
+.grid-collapse.open .cert:nth-child(3) { transition-delay: 220ms; }
+.grid-collapse.open .project:nth-child(4),
+.grid-collapse.open .cert:nth-child(4) { transition-delay: 270ms; }
+.grid-collapse.open .project:nth-child(n+5),
+.grid-collapse.open .cert:nth-child(n+5) { transition-delay: 320ms; }
+
+.projects-more, .certs-more { display: flex; justify-content: center; margin-top: 24px; }
+.projects-more .see-more,
+.certs-more .see-more {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.projects-more .see-more:hover,
+.certs-more .see-more:hover { border-color: var(--accent); color: var(--accent); }
+.projects-more .see-more .arrow,
+.certs-more .see-more .arrow { display: inline-block; transition: transform 0.15s ease; }
+.projects-more .see-more:hover .arrow,
+.certs-more .see-more:hover .arrow { transform: translateY(2px); }
+.projects-more .see-more[aria-expanded='true']:hover .arrow,
+.certs-more .see-more[aria-expanded='true']:hover .arrow { transform: translateY(-2px); }
+
 /* ============ Certifications (signals) ============ */
 .certs-grid {
   display: grid;
@@ -548,6 +610,30 @@ section.hero {
   margin-top: auto;
 }
 .cert-meta .verify { color: var(--accent); display: inline-flex; align-items: center; gap: 4px; }
+.cert-meta .in-prep {
+  color: var(--text); opacity: 0.7;
+  font-style: italic;
+  letter-spacing: 0.06em;
+}
+
+.cert { position: relative; }
+.cert.upcoming .cert-badge img { opacity: 0.55; filter: grayscale(0.2); transition: opacity 0.2s ease, filter 0.2s ease; }
+.cert.upcoming:hover .cert-badge img { opacity: 1; filter: grayscale(0); }
+.cert-ribbon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 3px 9px;
+  line-height: 1;
+}
 
 /* ============ Skills stack diagram ============ */
 .stack-diagram {
@@ -914,6 +1000,8 @@ footer.site .left { color: var(--muted); }
   .hero-portrait .frame { animation: none; }
   .layer, .news-item, .cert, .q-block, .pub-item, .project::after { transition: none; }
   .layer:hover, .news-item:hover, .cert:hover, .q-block:hover, .pub-item:hover { transform: none; padding-left: 0; }
+  .grid-collapse { transition: none; }
+  .grid-collapse .project, .grid-collapse .cert { transition: none; transform: none; }
 }
 
 /* ============ Responsive — 960 / 720 / 480 tiers ============ */
