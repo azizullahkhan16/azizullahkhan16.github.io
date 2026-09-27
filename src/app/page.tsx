@@ -1,4 +1,5 @@
 import { Nav } from '@/components/nav'
+import { BackToTop } from '@/components/back-to-top'
 import { Hero } from '@/components/sections/hero'
 import { ThinkingSection } from '@/components/sections/thinking-section'
 import { ProjectsSection } from '@/components/sections/projects-section'
@@ -31,6 +32,7 @@ export default function Home() {
           </div>
         </footer>
       </div>
+      <BackToTop />
     </>
   )
 }
