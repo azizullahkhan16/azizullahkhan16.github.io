@@ -6,6 +6,11 @@ export interface NewsItem {
 
 export const news: NewsItem[] = [
   {
+    date: 'Sep 2026',
+    kind: 'Cert',
+    text: 'Earned NCA-AIIO: NVIDIA-Certified Associate, AI Infrastructure & Operations.',
+  },
+  {
     date: 'Apr 2026',
     kind: 'Cert',
     text: 'Completed AZ-400: Azure DevOps Engineer Expert.',

@@ -13,8 +13,8 @@ export const certifications: Certification[] = [
     title: 'NVIDIA-Certified Associate: AI Infrastructure & Operations',
     issuer: 'NVIDIA',
     code: 'NCA-AIIO',
+    credentialUrl: 'https://www.credly.com/badges/d5c1650b-4ee7-416a-b0c5-0118803418fe/public_url',
     badgeImage: '/certifications/nvidia-nca-aiio.png',
-    upcoming: true,
   },
   {
     title: 'Certified Kubernetes Administrator',

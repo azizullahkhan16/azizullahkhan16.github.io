@@ -28,6 +28,15 @@ export function ContactSection() {
       external: true,
     })
   }
+  if (profile.socials.orcid) {
+    rows.push({
+      method: 'orcid',
+      value: profile.socials.orcid.replace(/^https?:\/\//, ''),
+      href: profile.socials.orcid,
+      cta: 'visit ↗',
+      external: true,
+    })
+  }
   if (profile.socials.github) {
     rows.push({
       method: 'github',
@@ -55,7 +64,7 @@ export function ContactSection() {
   })
 
   return (
-    <Section id="ping" index="07" title="ping" noBorder>
+    <Section id="ping" index="08" title="ping" noBorder>
       <div className="contact-wrap">
         <div className="kicker">
           <span className="dot" />

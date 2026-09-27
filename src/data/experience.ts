@@ -16,14 +16,12 @@ export const experience: Experience[] = [
     current: true,
     bullets: [
       'Productionized <strong>AKS end-to-end</strong> — pool separation and scheduled node upgrades with <span class="metric">zero user-visible downtime</span>; every new service inherits alerting and observability from day one.',
-      'Made the cluster <strong>reproducible from source</strong> — git + Key Vault only. Eliminated backup ops entirely; full teardown-to-restore in <span class="metric">one pipeline run</span>.',
-      'Deployed and <strong>production-hardened Langfuse on AKS</strong> — the <span class="metric">first observability layer</span> for our LLM apps: every prompt, trace, and cost, per-tenant, with no public endpoints.',
-      'Designed a <strong>zero-trust hub-spoke network across <span class="metric">8 spokes</span></strong> — the network foundation behind our SOC2, GDPR, HIPAA posture, and the door to enterprise-tier deals.',
+      'Made the cluster <strong>reproducible from source</strong> — git + Key Vault only. Full teardown-to-restore in <span class="metric">one pipeline run</span>.',
+      'Deployed and <strong>production-hardened Langfuse on AKS</strong> — the <span class="metric">first observability layer</span> for our LLM apps: every prompt, trace, and cost, per-tenant, no public endpoints.',
+      'Designed a <strong>zero-trust hub-spoke network across <span class="metric">8 spokes</span></strong> — the foundation behind our SOC2, GDPR, HIPAA posture and enterprise-tier deals.',
       'Modular IaC cut environment provisioning from <span class="metric">~2 h → ~20 min</span> across <span class="metric">8 environments</span>.',
-      'Standardized CI/CD with SonarQube quality gates — <em>main</em> stays deploy-ready.',
       'Owned a <strong>multi-tenant, event-driven billing service</strong> — <span class="metric">8 dimensions × 5 tenants</span>.',
       'Centralized monitoring across the tenant fleet — <span class="metric">95%+ coverage</span>; MTTD ~1 h → <span class="metric">~8 min</span> (<span class="metric">~7× faster</span>).',
-      'Turned incident triage into a shared playbook — <strong>cross-team escalations to infra dropped to near-zero</strong>.',
     ],
   },
   {
