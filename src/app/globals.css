@@ -1140,6 +1140,46 @@ footer.site .footer-short { display: none; }
   .stack-diagram { padding: 24px 16px; }
 }
 
+/* ============ Back to top ============ */
+.back-to-top {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(16px, 3vw, 28px);
+  transform: translate(-50%, 8px);
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card-translucent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--muted);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease,
+              color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  z-index: 45;
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.back-to-top svg { width: 16px; height: 16px; display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top { transition: opacity 0.15s ease; transform: translate(-50%, 0); }
+  .back-to-top.visible { transform: translate(-50%, 0); }
+}
+
 .pub-summary {
   font-size: 13.5px;
   color: var(--muted);
