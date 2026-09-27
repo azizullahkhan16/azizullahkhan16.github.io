@@ -28,6 +28,15 @@ export function ContactSection() {
       external: true,
     })
   }
+  if (profile.socials.orcid) {
+    rows.push({
+      method: 'orcid',
+      value: profile.socials.orcid.replace(/^https?:\/\//, ''),
+      href: profile.socials.orcid,
+      cta: 'visit ↗',
+      external: true,
+    })
+  }
   if (profile.socials.github) {
     rows.push({
       method: 'github',
