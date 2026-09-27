@@ -45,7 +45,7 @@ export function ProjectsSection() {
   const rest = projects.filter((p) => !p.featured)
 
   return (
-    <Section id="builds" index="03" title="builds">
+    <Section id="builds" index="04" title="builds">
       <h2 className="eyebrow">Things I&apos;ve shipped.</h2>
       <p className="lede">
         Systems I built to understand systems better — end-to-end, from cluster fabric down to

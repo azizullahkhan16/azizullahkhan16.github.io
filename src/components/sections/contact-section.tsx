@@ -55,7 +55,7 @@ export function ContactSection() {
   })
 
   return (
-    <Section id="ping" index="07" title="ping" noBorder>
+    <Section id="ping" index="08" title="ping" noBorder>
       <div className="contact-wrap">
         <div className="kicker">
           <span className="dot" />

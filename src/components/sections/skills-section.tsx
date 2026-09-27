@@ -4,7 +4,7 @@ import { stack } from '@/data/skills'
 
 export function SkillsSection() {
   return (
-    <Section id="stack" index="04" title="stack">
+    <Section id="stack" index="05" title="stack">
       <h2 className="eyebrow">The stack, layer by layer.</h2>
       <p className="lede">
         Shown as I actually reach for it — from the cloud fabric at the bottom to the

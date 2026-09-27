@@ -52,7 +52,7 @@ export function CertificationsSection() {
   const hidden = certifications.slice(VISIBLE)
 
   return (
-    <Section id="signals" index="05" title="signals">
+    <Section id="signals" index="06" title="signals">
       <h2 className="eyebrow">Verified along the way.</h2>
       <p className="lede">
         External signals from Microsoft and NVIDIA. Verified credentials link out; ones currently

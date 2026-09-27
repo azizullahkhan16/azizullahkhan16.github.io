@@ -17,9 +17,9 @@ export function Hero() {
           <div className="hero-inner">
             <div>
               <h1>
-                Building the <em>plumbing</em>&nbsp;for
+                Powering the <em>AI</em>&nbsp;you use,
                 <br />
-                language&nbsp;models.
+                from behind the scenes.
               </h1>
 
               <p className="pitch">

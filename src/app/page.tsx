@@ -3,6 +3,7 @@ import { Hero } from '@/components/sections/hero'
 import { ThinkingSection } from '@/components/sections/thinking-section'
 import { ProjectsSection } from '@/components/sections/projects-section'
 import { ExperienceSection } from '@/components/sections/experience-section'
+import { PublicationsSection } from '@/components/sections/publications-section'
 import { SkillsSection } from '@/components/sections/skills-section'
 import { CertificationsSection } from '@/components/sections/certifications-section'
 import { RecentSection } from '@/components/sections/recent-section'
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <ThinkingSection />
       <ExperienceSection />
+      <PublicationsSection />
       <ProjectsSection />
       <SkillsSection />
       <CertificationsSection />
