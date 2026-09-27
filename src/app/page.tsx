@@ -25,7 +25,10 @@ export default function Home() {
       <div className="page">
         <footer className="site">
           <div className="left">© {new Date().getFullYear()} Azizullah Khan</div>
-          <div>Deployed on GitHub Pages</div>
+          <div>
+            <span className="footer-long">Deployed on GitHub Pages</span>
+            <span className="footer-short">GitHub Pages</span>
+          </div>
         </footer>
       </div>
     </>
