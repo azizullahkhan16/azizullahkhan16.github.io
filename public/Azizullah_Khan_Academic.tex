@@ -1,0 +1,191 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{latexsym}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage[letterpaper,left=0.25in,right=0.25in,top=0.25in,bottom=0.25in]{geometry}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{\bfseries\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule]
+\newlength{\entrygap}\setlength{\entrygap}{1pt}
+\newlength{\sectiongap}\setlength{\sectiongap}{2pt}
+\titlespacing*{\section}{0pt}{\sectiongap}{2pt}
+
+\pdfgentounicode=1
+
+% Underline at a fixed depth so every link's underline sits at the same distance
+\newcommand{\ul}[1]{\underline{\smash{#1}\vphantom{y}}}
+
+% ---------- Commands ----------
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+
+\newcommand{\resumeSubheading}[4]{
+  \item
+    \begin{tabular*}{\dimexpr\textwidth-0.15in\relax}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{\dimexpr\textwidth-0.15in\relax}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}
+}
+
+\newcommand{\resumeProjectHeadingSup}[3]{
+    \item
+    \begin{tabular*}{\dimexpr\textwidth-0.15in\relax}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+      \textit{\small #3} & \\
+    \end{tabular*}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumePubHeading}[2]{
+    \item
+    \begin{tabular*}{\dimexpr\textwidth-0.15in\relax}{p{0.88\textwidth}@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}
+}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=\entrygap]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+\begin{document}
+
+% ---------- Heading ----------
+\begin{center}
+    {\huge \bfseries\scshape Azizullah Khan} \\
+    \small \faPhone* \ +92 336 8912810 $|$
+    \faEnvelope \ \href{mailto:azizullah.khan.16@outlook.com}{\ul{azizullah.khan.16@outlook.com}} \\
+    \faLinkedin \ \href{https://www.linkedin.com/in/azizullah-khan-79a419278/}{\ul{linkedin.com/in/azizullah-khan-79a419278}} $|$
+    \faGithub \ \href{https://github.com/azizullahkhan16}{\ul{github.com/azizullahkhan16}}
+\end{center}
+\vspace{-8pt}
+
+% ---------- Education ----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Institute of Business Administration (IBA)}{Karachi, Pakistan}
+      {Bachelor of Science in Computer Science \textbf{CGPA: 3.76/4.0}}{August 2021 -- May 2025}
+      \resumeItemListStart
+        \resumeItem{Awards: Dean's List (awarded for outstanding academic performance, 4 consecutive years).}
+        \resumeItem{Coursework: Data Structures, Algorithms, Object-Oriented Programming, Software Architecture \& Design, Computer Architecture \& Assembly, Operating Systems, Parallel \& Distributed Computing, Machine Learning.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+% ---------- Selected Systems Projects ----------
+\section{Selected Systems Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeadingSup
+          {\textbf{Parallel Shortest-Path Performance} $|$ \emph{Python, Multiprocessing, NetworkX}}{May 2025}
+          {CSE467 -- Parallel \& Distributed Computing}
+          \resumeItemListStart
+            \resumeItem{Compared sequential and multiprocessing Dijkstra, Bellman--Ford, and A$^*$ using matched workloads and timing.}
+            \resumeItem{Measured the task-granularity threshold for Python multiprocessing, finding a crossover around \textbf{1 ms} of work per task; batching independent shortest-path queries reached \textbf{4--5$\times$} speedup. \href{https://doi.org/10.5281/zenodo.23002316}{\ul{Preprint}}.}
+      \resumeItemListEnd
+      \resumeProjectHeadingSup
+          {\textbf{SHA-256 Placement on xv6-riscv} $|$ \emph{C, RISC-V, xv6}}{December 2024}
+          {CSE331 -- Operating Systems}
+          \resumeItemListStart
+            \resumeItem{Implemented the same SHA-256 core in kernel space, user space, and through a system call to compare placement costs.}
+            \resumeItem{Measured inputs from 50--420 bytes over 100 runs per size, finding that the system-call path added \textbf{2--4\%} over user-space execution for inputs of 100 bytes and above. \href{https://doi.org/10.5281/zenodo.23002506}{\ul{Preprint}}.}
+      \resumeItemListEnd
+      \resumeProjectHeadingSup
+          {\textbf{Indus Sahulat} -- Final Year Project $|$ \emph{Spring Boot, PostgreSQL, Redis, WebSockets}}{September 2024 -- May 2025}
+          {Supervised by \href{https://www.iba.edu.pk/faculty-profile.php?ftype=\&id=sahaider}{\ul{Dr. Sajjad Haider}}}
+          \resumeItemListStart
+            \resumeItem{Built a real-time emergency response platform for Indus Hospital, connecting patients, ambulance drivers, and dispatch workflows; reduced measured ambulance response time by \textbf{$\sim$10\%}.}
+            \resumeItem{Implemented live ambulance tracking with WebSockets and Redis, reducing peak database writes by \textbf{$\sim$20\%}, with Spring Security across four user roles. \href{https://azizullahkhan16.github.io/Indus_Sahulat_Final_Report.pdf}{\ul{Final Report}}.}
+      \resumeItemListEnd
+    \resumeSubHeadingListEnd\vspace{2pt}
+
+% ---------- Experience ----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Data Science Dojo}{August 2025 -- Present}
+      {Software Engineer I, Infrastructure}{Remote}
+      \resumeItemListStart
+        \resumeItem{Engineer production \textbf{AKS} infrastructure, including cluster maintenance and upgrades while maintaining availability.}
+        \resumeItem{Designed a zero-trust hub-and-spoke network across \textbf{8} spokes, and built modular IaC used across \textbf{8} environments.}
+        \resumeItem{Reduced environment setup time from $\sim$2 hours to \textbf{20 minutes} through reusable infrastructure modules.}
+        \resumeItem{Led an event-driven billing service spanning \textbf{8} usage dimensions across \textbf{5} tenants, with tracing for LLM requests and costs.}
+        \resumeItem{Built centralized monitoring covering \textbf{95\%+} of tenants, detecting production issues within $\sim$\textbf{8 minutes} and identifying \textbf{10+} issues before customer impact.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Salsoft Technologies}{January 2024 -- July 2025}
+      {Junior Backend Developer}{Karachi, Pakistan}
+      \resumeItemListStart
+        \resumeItem{Developed backend services for \textbf{3} production apps, including reusable access-control, notification, chat, and search modules.}
+        \resumeItem{Sustained p95 latency on high-traffic endpoints through database indexing, query optimization, and caching as usage grew.}
+      \resumeItemListEnd
+
+
+    \resumeSubheading
+      {Institute of Business Administration (IBA)}{August 2023 -- May 2024}
+      {Teaching Assistant -- Department of Computer Science}{Karachi, Pakistan}
+      \resumeItemListStart
+        \resumeItem{TA for \textbf{CSE141} Introduction to Programming (C++) and \textbf{CSE142} Object-Oriented Programming.}
+        \resumeItem{Ran weekly labs, designed assignments and held one-on-one sessions to help students debug their code.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+% ---------- Technical Skills ----------
+\section{Technical Skills}
+ \vspace{3pt}\begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=0pt]
+    \small{\item{
+     \textbf{Languages}{: Python, Go, C, C++, Java, TypeScript, JavaScript} \\
+     \textbf{Frameworks \& Libraries}{: Docker, Kubernetes, FastAPI, Spring Boot, Node.js, React, vLLM} \\
+     \textbf{Developer Tools}{: Azure, AWS, Terraform, Slurm, CI/CD, Linux, Prometheus, Grafana, Datadog, PostgreSQL, Redis}
+    }}
+ \end{itemize}
+
+% ---------- Leadership ----------
+\section{Leadership}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {IBA Computer Science Society}{2024 -- 2025}
+      {Module Head, Competitive Programming}{Karachi, Pakistan}
+      \resumeItemListStart
+        \resumeItem{Led the Competitive Programming module to \textbf{100+} participating teams, organizing technical challenges and activities; recognized with the \textbf{Best Module Head Award}.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {IBA Data Science Society}{2023 -- 2024}
+      {Module Head, Databases}{Karachi, Pakistan}
+      \resumeItemListStart
+        \resumeItem{Led the Databases module and coordinated a technical organizing team, developing and delivering database-focused challenges and activities for students.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\end{document}

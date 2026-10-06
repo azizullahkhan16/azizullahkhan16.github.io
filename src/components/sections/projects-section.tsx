@@ -48,7 +48,7 @@ export function ProjectsSection() {
     <Section id="builds" index="04" title="builds">
       <h2 className="eyebrow">Things I&apos;ve shipped.</h2>
       <p className="lede">
-        Systems I built to understand systems better — end-to-end, from cluster fabric down to
+        Systems I built to understand systems better, end-to-end, from cluster fabric down to
         schema.
       </p>
       <div className="projects-grid">

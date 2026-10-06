@@ -5,6 +5,7 @@ export const profile = {
   bio: 'Software Engineer, Infrastructure at Data Science Dojo. I build and run the platform our LLM applications sit on. That layer decides how deployable, scalable, and reliable production serving actually is. Moving deeper into the infrastructure of training and inference at scale: fault-tolerant training clusters, autoscaling GPU pools under agentic and long-context load, and observability that catches non-deterministic failures before users do.',
   avatarUrl: '/avatar.png',
   cvPath: '/Azizullah_resume_v3.pdf',
+  academicCvPath: '/Azizullah_Khan_Academic.pdf',
   email: 'azizullah.khan.16@outlook.com',
   socials: {
     github: 'https://github.com/azizullahkhan16',

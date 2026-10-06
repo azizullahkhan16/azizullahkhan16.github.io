@@ -28,7 +28,7 @@ export const news: NewsItem[] = [
   {
     date: 'May 2025',
     kind: 'Milestone',
-    text: 'Graduated BS Computer Science, IBA Karachi — magna cum laude, 3.76 GPA.',
+    text: 'Graduated BS Computer Science, IBA Karachi, 3.76 GPA.',
   },
   {
     date: 'May 2024',

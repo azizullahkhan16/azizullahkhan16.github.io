@@ -6,7 +6,7 @@ export function RecentSection() {
   return (
     <Section id="recent" index="07" title="recent">
       <h2 className="eyebrow">How I got here.</h2>
-      <p className="lede">The dated trail — most recent first.</p>
+      <p className="lede">The dated trail, most recent first.</p>
       {news.map((item, i) => (
         <div key={`${item.date}-${i}`} className="news-item">
           <div className="news-date">{item.date}</div>

@@ -7,7 +7,7 @@ export function ExperienceSection() {
     <Section id="work" index="02" title="work">
       <h2 className="eyebrow">Where I&apos;ve built things.</h2>
       <p className="lede">
-        Two engineering roles across ~2.5 years — from shipping backends to owning the platform.
+        Two engineering roles across ~2.5 years, from shipping backends to owning the platform.
         Every metric below is one I moved.
       </p>
       {experience.map((exp) => {

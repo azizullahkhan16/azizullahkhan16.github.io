@@ -17,6 +17,6 @@ export const education: Education[] = [
     monogram: 'IBA Karachi',
     dates: 'Aug 2021 — May 2025',
     gpa: '3.76 / 4.0',
-    honors: ['Magna Cum Laude', "Dean's List"],
+    honors: ["Dean's List"],
   },
 ]
