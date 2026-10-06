@@ -7,9 +7,9 @@ export function PublicationsSection() {
     <Section id="pubs" index="03" title="pubs">
       <h2 className="eyebrow">Preprints &amp; reports.</h2>
       <p className="lede">
-        Open measurement studies with permanent DOIs. Neither claims a new algorithm; each takes
-        a question usually answered by folklore, measures it carefully, and ships the code and data
-        so the result can be reproduced.
+        Open, reproducible measurement studies, each with a permanent DOI. I take a question
+        usually settled by assumption and answer it with rigorous measurement and open code anyone
+        can rerun.
       </p>
       {publications.map((p, i) => (
         <div key={`${p.year}-${i}`} className="pub-item">

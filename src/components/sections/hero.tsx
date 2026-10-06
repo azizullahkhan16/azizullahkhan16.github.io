@@ -103,11 +103,11 @@ export function Hero() {
               </div>
             </div>
             <div className="cell">
-              <div className="k">Open to</div>
+              <div className="k">Next</div>
               <div className="v">
-                Full-time roles
+                Research master&apos;s
                 <br />
-                <small>Research&nbsp;collabs</small>
+                <small>applying&nbsp;now</small>
               </div>
             </div>
           </div>

@@ -34,7 +34,7 @@ export const publications: Publication[] = [
       'Where Should a Hash Function Live? Measuring Kernel, User-Space, and System-Call Costs for SHA-256 on xv6-riscv',
     authors: '<strong>A. Khan</strong>, A. Iqbal. Zenodo, 2026.',
     summary:
-      'Implements SHA-256 three ways on the xv6-riscv teaching OS — in the kernel, as a user-space library, and behind a dedicated system call — and measures what each placement really costs. The finding runs against intuition: the gap is dominated by process-creation cost, not the system-call boundary, so a well-written system call is nearly free. Closes with a concrete rule for choosing where a primitive should live.',
+      'Implements SHA-256 three ways on the xv6-riscv teaching OS (in the kernel, as a user-space library, and behind a dedicated system call) and measures what each placement really costs. The finding runs against intuition: the gap is dominated by process-creation cost, not the system-call boundary, so a well-written system call is nearly free. Closes with a concrete rule for choosing where a primitive should live.',
     links: {
       doi: 'https://doi.org/10.5281/zenodo.23002506',
       project: 'https://zenodo.org/records/23002506',

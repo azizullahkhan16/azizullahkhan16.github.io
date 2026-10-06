@@ -5,7 +5,7 @@ export function ThinkingSection() {
   return (
     <Section id="thinking" index="01" title="thinking">
       <h2 className="eyebrow">Open questions I&apos;m chasing.</h2>
-      <p className="thinking-lede" dangerouslySetInnerHTML={{ __html: thinkingLede }} />
+      <p className="lede" dangerouslySetInnerHTML={{ __html: thinkingLede }} />
       {questions.map((q) => (
         <div key={q.label} className="q-block">
           <div className="q-label">{q.label}</div>

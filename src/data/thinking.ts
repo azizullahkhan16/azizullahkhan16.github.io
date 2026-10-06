@@ -5,7 +5,7 @@ export interface Question {
 }
 
 export const thinkingLede =
-  "The three ML infrastructure problems I’m studying now — and <em>actively seeking research collaborations</em> to go deeper on."
+  "The three ML infrastructure problems I’m studying now, and actively seeking research collaborations to go deeper on."
 
 export const questions: Question[] = [
   {
@@ -15,7 +15,7 @@ export const questions: Question[] = [
   },
   {
     label: 'Q.02',
-    body: 'What does <em>monitoring</em> mean for a system whose failures aren’t crashes but drift — where P95 latency is only half the story, and the SLO is a quality signal that has to be computed from traces, evals, and user feedback rather than measured off a socket?',
+    body: 'What does <em>monitoring</em> mean for a system whose failures aren’t crashes but drift, where P95 latency is only half the story, and the SLO is a quality signal that has to be computed from traces, evals, and user feedback rather than measured off a socket?',
     tag: '→ trace-based evaluation · LLM-as-judge · online quality metrics · alertable regressions',
   },
   {
