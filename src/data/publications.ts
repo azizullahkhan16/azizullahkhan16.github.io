@@ -6,6 +6,7 @@ export interface Publication {
   summary?: string
   links: {
     pdf?: string
+    report?: string
     project?: string
     code?: string
     doi?: string
@@ -50,7 +51,7 @@ export const publications: Publication[] = [
     summary:
       'A system that lets patients alert nearby hospitals, dispatches ambulances, and tracks them live so medical teams are ready on arrival.',
     links: {
-      pdf: '/Indus_Sahulat_Final_Report.pdf',
+      report: 'https://ir.iba.edu.pk/fyp-bscs/22/',
       code: 'https://github.com/azizullahkhan16/indus-sahulat-backend',
     },
   },

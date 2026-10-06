@@ -28,6 +28,9 @@ export function PublicationsSection() {
               {p.links.pdf && (
                 <a href={p.links.pdf} target="_blank" rel="noopener noreferrer">pdf ↗</a>
               )}
+              {p.links.report && (
+                <a href={p.links.report} target="_blank" rel="noopener noreferrer">report ↗</a>
+              )}
               {p.links.project && (
                 <a href={p.links.project} target="_blank" rel="noopener noreferrer">zenodo ↗</a>
               )}

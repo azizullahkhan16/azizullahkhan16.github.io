@@ -102,7 +102,7 @@ export default function Home() {
           <h2>Projects</h2>
           <ol className="ac-projects">
             <li>
-              <Ext href={`${base}/Indus_Sahulat_Final_Report.pdf`}>
+              <Ext href="https://ir.iba.edu.pk/fyp-bscs/22/">
                 Indus Sahulat: Real-Time Emergency Response for Indus Hospital &amp; Health Network ↗
               </Ext>
               <p className="ac-authors">
